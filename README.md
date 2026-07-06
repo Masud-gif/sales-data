@@ -1,3 +1,5 @@
+<img width="1161" height="652" alt="Screenshot 2026-07-06 151110" src="https://github.com/user-attachments/assets/fcc3f950-3ed5-477c-9082-7b8bcc460be8" />
+<img width="1161" height="652" alt="Screenshot 2026-07-06 151110" src="https://github.com/user-attachments/assets/27b64cf3-ef3d-44eb-a9dc-97ffcfe09ece" />
 ## Ride Hailing Performance Analysis Report
 The Objective of this analysis is to find out the current position of our business in
 different cities and how we can make it better.
