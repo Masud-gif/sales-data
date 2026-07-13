@@ -1,0 +1,65 @@
+-- 1. Attrition count
+SELECT Attrition, COUNT(*) as total
+FROM hr_data
+GROUP BY Attrition
+
+-- 2. Average monthly income by attrition
+SELECT Attrition, AVG(MonthlyIncome)
+FROM hr_data
+GROUP BY Attrition
+
+-- 3. Attrition count by department
+SELECT Department, COUNT(*) as total
+FROM hr_data
+WHERE Attrition = 'Yes'
+GROUP BY Department
+
+-- 4. Attrition rate by department
+SELECT Department,
+       COUNT(*) as total_employees,
+       SUM(CASE WHEN Attrition = 'Yes' THEN 1 ELSE 0 END) as attrition_count,
+       ROUND(SUM(CASE WHEN Attrition = 'Yes' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as attrition_rate
+FROM hr_data
+GROUP BY Department
+
+-- 5. Average job satisfaction and work life balance by department
+SELECT Department, AVG(JobSatisfaction), AVG(WorkLifeBalance)
+FROM hr_data
+WHERE Attrition = 'Yes'
+GROUP BY Department
+
+-- 6. Business travel by department
+SELECT Department,
+       ROUND(SUM(CASE WHEN BusinessTravel = 'Travel_Rarely' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as Travel_Rarely,
+       ROUND(SUM(CASE WHEN BusinessTravel = 'Travel_Frequently' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as Travel_Frequently,
+       ROUND(SUM(CASE WHEN BusinessTravel = 'Non-Travel' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as Non_Travel
+FROM hr_data
+WHERE Attrition = 'Yes'
+GROUP BY Department
+
+-- 7. Average years since last promotion by department
+SELECT Department, AVG(YearsSinceLastPromotion)
+FROM hr_data
+WHERE Attrition = 'Yes'
+GROUP BY Department
+
+-- 8. Average distance from home by department
+SELECT Department, ROUND(AVG(DistanceFromHome), 2) as Average_distance
+FROM hr_data
+WHERE Attrition = 'Yes'
+GROUP BY Department
+
+-- 9. Marital status by department
+SELECT Department,
+       ROUND(SUM(CASE WHEN MaritalStatus = 'Single' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as Single,
+       ROUND(SUM(CASE WHEN MaritalStatus = 'Married' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as Married,
+       ROUND(SUM(CASE WHEN MaritalStatus = 'Divorced' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as Divorced
+FROM hr_data
+WHERE Attrition = 'Yes'
+GROUP BY Department
+
+-- 10. Overtime rate by department
+SELECT Department,
+       ROUND(SUM(CASE WHEN OverTime = 'Yes' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as Over_time_Rate
+FROM hr_data
+GROUP BY Department
